@@ -1,0 +1,13 @@
+#app * {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html {
+  font-family: 'PingFang SC', 'PingFang SC', miui, system-ui, -apple-system,
+    BlinkMacSystemFont, Helvetica Neue, Helvetica, sans-serif;
+  background: #ffffff;
+  scroll-behavior: smooth; // 平滑滚动
+  -webkit-overflow-scrolling: touch; // 苹果的弹性滚动
+  touch-action: manipulation; // 解决移动端 click 延时的问题
+}

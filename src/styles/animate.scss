@@ -1,0 +1,86 @@
+/* 基础动画帧 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 500px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes leftIn {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+@keyframes rightIn {
+  from {
+    transform: translate3d(0%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@keyframes scaleAnim {
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+.ani-scaleAnim {
+  animation: scaleAnim 1s linear infinite;
+}
+
+/* VUE transition 标签动画 */
+.fade {
+  &-enter-active {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  &-leave-active {
+    animation: fadeIn 0.6s ease-in-out reverse;
+  }
+}
+
+.fade-in-up {
+  &-enter-active {
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+  &-leave-active {
+    animation: fadeInUp 0.6s ease-in-out reverse;
+  }
+}

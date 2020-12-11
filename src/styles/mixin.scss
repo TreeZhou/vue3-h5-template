@@ -1,0 +1,42 @@
+@function vw($w, $vpw: 750) {
+  @return $w/ $vpw * 100 * 1vw;
+}
+
+@function vh($h, $vph: 1334) {
+  @return $h / $vph * 100 * 1vh;
+}
+//循环出media，追着屏幕比例变大，值a变大
+$ratioLong: 750/1650; //长尺寸宽高比
+$ratioShort: 750/1206; //短尺寸宽高比
+$valueChangeRange: abs(200); //属性的变化范围
+$size: 100; //手机设备屏幕宽高比是0-1，乘以100，值会在1-100之间，循环出media时变化范围就会在1-100以内；
+
+$heightLong: ceil(
+  $ratioLong * $size
+); // 设定其中一个高度大概为$size以内的整数，以此计算其他属性；
+$width: $ratioLong * $heightLong;
+$heightShort: floor($width / $ratioShort);
+
+$range: abs($width / $heightLong - $width / $heightShort); //media的变化范围
+$changeRatio: $range / $valueChangeRange; // ’宽高比‘与’变换属性‘换算比例
+
+@for $i from $heightLong through $heightShort {
+  $ratio: $width / $i;
+  $startLimit: $width / $heightLong; //边界起点
+  $changeValue: abs($ratio - $startLimit);
+  $value: $changeValue / $changeRatio;
+  @media (min-aspect-ratio:  #{$width} / $i) {
+    .title {
+      top: vw($value);
+    }
+  }
+}
+
+@mixin img($width, $height) {
+  width: $width;
+  height: $width;
+}
+
+@function imgSize($img) {
+  // @return @include img(image-size($img)[0], image-size($img)[1]);
+}
